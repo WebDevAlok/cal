@@ -39,3 +39,5 @@ node_modules/
 **/migrations/*.py
 # Except __init__.py
 !**/migrations/__init__.py
+
+*.lock
