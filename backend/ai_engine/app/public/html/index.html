@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Playlist Question Generator</title>
+  <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Video Question Generator</h1>
+    
+    <div class="url-container">
+      <input type="url" id="playlist-url" placeholder="Enter YouTube playlist or video URL" required />      <button id="fetch-videos" class="inline">Submit</button>
+    </div>
+
+    <div class="hierarchy-dropdowns">
+      <div>
+        <label for="course-select">Course</label>
+        <select id="course-select">
+          <option value="">Select Course</option>
+        </select>
+      </div>
+      
+      <div>
+        <label for="module-select">Module</label>
+        <select id="module-select" disabled>
+          <option value="">Select Module</option>
+        </select>
+      </div>
+      
+      <div>
+        <label for="section-select">Section</label>
+        <select id="section-select" disabled>
+          <option value="">Select Section</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="default-settings">
+      <label for="default-segments">Default Number of Segments</label>
+      <input type="number" id="default-segments" min="1" placeholder="Enter default segments count" />
+      
+      <label for="default-questions">Default Questions per Segment</label>
+      <input type="number" id="default-questions" min="1" placeholder="Enter default questions count" />
+    </div>
+
+    <div id="videos-container"></div>
+
+    <form id="video-form">
+      <label for="user-api-key">Gemini API Key</label>
+      <input type="text" id="user-api-key" placeholder="Enter your Gemini API key" required />
+
+      <div id="num-segments-container" style="display: none;">
+        <label for="num-segments">Number of Segments (for this video)</label>
+        <input type="number" id="num-segments" min="1" placeholder="Enter number of segments" />
+      </div>      
+
+      <div id="video-player-container">
+        <div id="player"></div>
+      </div>
+
+      <div id="segments-container" class="segments-container"></div>
+
+      <div id="details-form">
+        <h3 id="form-title">Segment Details</h3>
+        <label for="timestamp">Start time of the segment</label>
+        <div style="display: flex; gap: 10px;">
+          <input type="number" id="timestamp-hr" min="0" placeholder="HH" style="width: 33%;" />
+          <input type="number" id="timestamp-min" min="0" max="59" placeholder="MM" style="width: 33%;" />
+          <input type="number" id="timestamp-sec" min="0" max="59" placeholder="SS" style="width: 33%;" />
+        </div>
+
+        <!-- Add after the timestamp div that contains hr/min/sec inputs -->
+        <button type="button" id="recalculate-timestamps" class="inline">Recalculate Timestamps</button>
+
+        <label for="questions">Number of Questions</label>
+        <input type="number" id="questions" placeholder="Enter number of questions" />
+
+        <label for="type">Type of Questions</label>
+        <select id="type">
+          <option value="">Select type</option>
+          <option value="analytical">Analytical</option>
+          <option value="case-study">Case Study</option>
+        </select>
+      </div>
+
+      <button type="submit">Upload</button>
+    </form>
+
+    <div id="generating-sign">Generating<span class="dots"><span></span><span></span><span></span></span></div>
+
+    <div id="output">
+      <h3>Generated Output:</h3>
+      <div id="output-videos-container"></div>
+      <div id="video-info"></div>
+      
+      <h4>Segments</h4>
+      <div id="output-segments-container" class="output-segments-container"></div>
+      <div id="segment-details-container"></div>
+      
+      <h4>Questions</h4>
+      <div id="output-questions-container" class="output-questions-container"></div>
+      <div id="question-details-container"></div>
+    </div>
+
+    <button id="confirm-btn" style="display:none;">Confirm & Download</button>
+  </div>
+
+  <script>
+
+  </script>
+  <div id="temp-player" style="display: none;"></div>
+  <script src="../javascript/script.js"></script>
+</body>
+</html>
