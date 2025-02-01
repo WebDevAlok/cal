@@ -6,13 +6,13 @@ from fastapi.middleware.cors import CORSMiddleware
 from pathlib import Path
 
 from fastapi.responses import HTMLResponse
+from fastapi.staticfiles import StaticFiles
 
 app = FastAPI(
     title="LLM Backend API",
     description=("A simple API for LLM-based tasks like question generation."),
     version="1.0.0",
 )
-
 
 app.add_middleware(
     CORSMiddleware,
@@ -22,6 +22,9 @@ app.add_middleware(
     allow_headers=["*"],  # Allow all headers
 )
 
+# Mount the "public" folder to be served at "/static"
+app.mount("/static", StaticFiles(directory="app/public"), name="static")
+
 # Include routers
 app.include_router(question.router)
 app.include_router(rag_router, prefix="/rag", tags=["RAG"])
@@ -29,5 +32,5 @@ app.include_router(rag_router, prefix="/rag", tags=["RAG"])
 
 @app.get("/", response_class=HTMLResponse)
 def serve_homepage():
-    index_path = Path("app/templates/index.html")
+    index_path = Path("app/public/html/index.html")
     return HTMLResponse(content=index_path.read_text(encoding="utf-8"))

@@ -29,8 +29,24 @@ This FastAPI application is designed to handle video transcript processing and g
 
 5. The application can be accessed at "127.0.0.1:8000/".
 
+## Start the Dummy Server
+
+1. Change the directory to dummy_server
+   ```bash
+   cd dummy_server
+   ```
+
+2. Install the requirements
+   ```bash
+   pip install -r  requirements.txt
+   ```
+3. Run the server
+   ```bash
+   python server.py
+   ```
+
 Note for developers:
-Use the following commands before restarting the application after changes:
+Use the following commands in Powershell before restarting the application after changes, if your changes do not get reflected in the application after restart:
    ```bash
    Get-ChildItem -Recurse -Directory -Filter "__pycache__" | Remove-Item -Recurse -Force
    Get-Process | Where-Object { $_.Name -like "*python*" } | Stop-Process -Force

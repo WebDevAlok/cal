@@ -400,6 +400,13 @@ function displayVideoBlocks() {
     videoBlock.addEventListener("click", () => selectVideo(index));
     container.appendChild(videoBlock);
   });
+
+  // Select and click the first child element
+  /* if (container.firstElementChild) {
+    console.log("First child element:", container.firstElementChild);
+    container.firstElementChild.click();
+  } */
+  // Attempted to fix the issue of the first video not being selected by default
 }
 
 const numSegmentsInput = document.getElementById("num-segments");
